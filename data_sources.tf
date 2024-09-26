@@ -1,44 +1,17 @@
 data "aws_caller_identity" "current" {}
 
-/*----------------------------------------------------------------------*/
-/* NetWorking | datasources                                             */
-/*----------------------------------------------------------------------*/
-data "aws_vpc" "this" {
-  filter {
-    name   = "tag:Name"
-    values = ["${local.common_name}"]
+locals {
+  route53_zone_calculated = {
+    for acm_key, acm_config in var.acm_parameters :
+    acm_key => {
+      "private_zone" = try(acm_config.private_zone, false)
+    } if(try(acm_config.create_route53_records, true) != false)
   }
 }
 
-data "aws_subnets" "private" {
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.this.id]
-  }
+data "aws_route53_zone" "this" {
+  for_each = local.route53_zone_calculated
 
-  tags = {
-    Name = "${local.common_name}-private*"
-  }
-}
-
-data "aws_subnets" "public" {
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.this.id]
-  }
-
-  tags = {
-    Name = "${local.common_name}-public*"
-  }
-}
-
-data "aws_subnets" "database" {
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.this.id]
-  }
-
-  tags = {
-    Name = "${local.common_name}-db*"
-  }
+  name         = each.key
+  private_zone = false
 }

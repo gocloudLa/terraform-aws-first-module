@@ -16,7 +16,7 @@ module "acm" {
   validation_option                           = try(each.value.validation_option, var.acm_defaults.validation_option, {})
   create_route53_records                      = try(each.value.create_route53_records, var.acm_defaults.create_route53_records, true)
   validation_record_fqdns                     = try(each.value.validation_record_fqdns, var.acm_defaults.validation_record_fqdns, [])
-  zone_id                                     = try(each.value.zone_id, var.acm_defaults.zone_id, data.aws_route53_zone.acm[each.key].zone_id)
+  zone_id                                     = try(each.value.zone_id, var.acm_defaults.zone_id, data.aws_route53_zone.this[each.key].zone_id, null)
   dns_ttl                                     = try(each.value.dns_ttl, var.acm_defaults.dns_ttl, 60)
   acm_certificate_domain_validation_options   = try(each.value.acm_certificate_domain_validation_options, var.acm_defaults.acm_certificate_domain_validation_options, {})
   distinct_domain_names                       = try(each.value.distinct_domain_names, var.acm_defaults.distinct_domain_names, [])
@@ -31,9 +31,9 @@ module "acm_secondary" {
   source  = "terraform-aws-modules/acm/aws"
   version = "4.3.1"
 
-  for_each = local.metadata.aws_region == "us-east-1" ? {} : var.acm_parameters
+  for_each = var.acm_parameters
 
-  create_certificate                          = true
+  create_certificate                          = local.metadata.aws_region == "us-east-1" ? false : true
   create_route53_records_only                 = try(each.value.create_route53_records_only, var.acm_defaults.create_route53_records_only, false)
   validate_certificate                        = try(each.value.validate_certificate, var.acm_defaults.validate_certificate, true)
   validation_allow_overwrite_records          = try(each.value.validation_allow_overwrite_records, var.acm_defaults.validation_allow_overwrite_records, true)
@@ -45,7 +45,7 @@ module "acm_secondary" {
   validation_option                           = try(each.value.validation_option, var.acm_defaults.validation_option, {})
   create_route53_records                      = try(each.value.create_route53_records, var.acm_defaults.create_route53_records, true)
   validation_record_fqdns                     = try(each.value.validation_record_fqdns, var.acm_defaults.validation_record_fqdns, [])
-  zone_id                                     = try(each.value.zone_id, var.acm_defaults.zone_id, data.aws_route53_zone.acm[each.key].zone_id)
+  zone_id                                     = try(each.value.zone_id, var.acm_defaults.zone_id, data.aws_route53_zone.this[each.key].zone_id, null)
   dns_ttl                                     = try(each.value.dns_ttl, var.acm_defaults.dns_ttl, 60)
   acm_certificate_domain_validation_options   = try(each.value.acm_certificate_domain_validation_options, var.acm_defaults.acm_certificate_domain_validation_options, {})
   distinct_domain_names                       = try(each.value.distinct_domain_names, var.acm_defaults.distinct_domain_names, [])
@@ -58,10 +58,4 @@ module "acm_secondary" {
   providers = {
     aws = aws.use1
   }
-}
-
-data "aws_route53_zone" "acm" {
-  for_each = var.acm_parameters
-  name = each.key
-  private_zone = false
 }

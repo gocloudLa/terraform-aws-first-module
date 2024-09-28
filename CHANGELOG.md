@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1](https://gitlab.com/espinlabs/gocloud/infrastructure-engine/global-modules/foundation/modules/aws/wrapper_acm/compare/v1.0.0...v1.0.1) (2024-09-28)
+
+### Bug Fixes
+
+* **doc:** fix variable table ([6acab56](https://gitlab.com/espinlabs/gocloud/infrastructure-engine/global-modules/foundation/modules/aws/wrapper_acm/commit/6acab56174be2f4131c5c60cb1eb56cdc2a85521))
+
 ## 1.0.0 (2024-09-26)
 
 ### Features

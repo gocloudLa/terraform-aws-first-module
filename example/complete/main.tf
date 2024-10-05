@@ -14,12 +14,13 @@ module "wrapper_acm" {
       ]
     }
 
-    "example.com" = {
+    "gcl-example.com" = {
       subject_alternative_names = [
-        "*.example.com"
+        "*.gcl-example.com"
       ]
       # EXTERNAL DNS SERVER
       create_route53_records = false
+      validate_certificate   = false
     }
   }
 

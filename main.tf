@@ -1,6 +1,6 @@
 module "acm" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "4.3.1"
+  version = "5.1.0"
 
   for_each = var.acm_parameters
 
@@ -23,13 +23,14 @@ module "acm" {
   validation_timeout                          = try(each.value.validation_timeout, var.acm_defaults.validation_timeout, null)
   key_algorithm                               = try(each.value.key_algorithm, var.acm_defaults.key_algorithm, "RSA_2048")
   putin_khuylo                                = try(each.value.putin_khuylo, var.acm_defaults.putin_khuylo, true)
+  zones                                       = try(each.value.zones, var.acm_defaults.zones, {})
 
   tags = local.common_tags
 }
 
 module "acm_secondary" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "4.3.1"
+  version = "5.1.0"
 
   for_each = var.acm_parameters
 
@@ -52,6 +53,8 @@ module "acm_secondary" {
   validation_timeout                          = try(each.value.validation_timeout, var.acm_defaults.validation_timeout, null)
   key_algorithm                               = try(each.value.key_algorithm, var.acm_defaults.key_algorithm, "RSA_2048")
   putin_khuylo                                = try(each.value.putin_khuylo, var.acm_defaults.putin_khuylo, true)
+  zones                                       = try(each.value.zones, var.acm_defaults.zones, {})
+
 
   tags = local.common_tags
 

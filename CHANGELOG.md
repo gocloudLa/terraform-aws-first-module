@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](https://gitlab.com/espinlabs/gocloud/infrastructure-engine/global-modules/foundation/modules/aws/wrapper_acm/compare/v1.1.0...v1.2.0) (2025-04-24)
+
+### Features
+
+* **module:** remote module upgrade to version 5.1.1 ([8f44b2e](https://gitlab.com/espinlabs/gocloud/infrastructure-engine/global-modules/foundation/modules/aws/wrapper_acm/commit/8f44b2e6868aa0b72d537000c88e9cbee85e21e5))
+
 ## [1.1.0](https://gitlab.com/espinlabs/gocloud/infrastructure-engine/global-modules/foundation/modules/aws/wrapper_acm/compare/v1.0.1...v1.1.0) (2024-10-05)
 
 ### Features

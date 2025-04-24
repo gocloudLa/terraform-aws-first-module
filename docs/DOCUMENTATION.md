@@ -4,6 +4,9 @@
 
 El Wrapper de Terraform para ACM simplifica la configuración del Servicio de Certificados SSL en la nube de AWS. Este wrapper funciona como una plantilla predefinida, facilitando la creación y gestión de ACM al encargarse de todos los detalles técnicos.
 
+**Modulos Externos** <br/>
+[terraform-aws-acm (5.1.1)](https://github.com/terraform-aws-modules/terraform-aws-acm/tree/master) <br/>
+
 **Diagrama** <br/>
 A continuación se puede ver una imagen que muestra la totalidad de recursos que se pueden desplegar con el wrapper:
 

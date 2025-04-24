@@ -1,6 +1,6 @@
 module "acm" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "5.1.0"
+  version = "5.1.1"
 
   for_each = var.acm_parameters
 
@@ -30,7 +30,7 @@ module "acm" {
 
 module "acm_secondary" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "5.1.0"
+  version = "5.1.1"
 
   for_each = var.acm_parameters
 

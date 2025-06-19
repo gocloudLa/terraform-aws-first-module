@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.0.0...v2.1.0) (2025-06-19)
+
+
+### Features
+
+* **cicd:** add permissions release-please ([bd467e3](https://github.com/gocloudLa/terraform-aws-first-module/commit/bd467e3c8902991be68d60f6f6ad75af169ab11e))
+* **cicd:** add release-please ([06047dd](https://github.com/gocloudLa/terraform-aws-first-module/commit/06047dd7215780e9e0297219e1641deb070de4f9))
+* **cicd:** changes in release-please ([b3a3d50](https://github.com/gocloudLa/terraform-aws-first-module/commit/b3a3d50e5481b8a3a94522511eea481a17e01391))
+
 ## [1.2.0](https://gitlab.com/espinlabs/gocloud/infrastructure-engine/global-modules/foundation/modules/aws/wrapper_acm/compare/v1.1.0...v1.2.0) (2025-04-24)
 
 ### Features

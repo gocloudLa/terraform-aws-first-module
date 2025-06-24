@@ -2,21 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.2.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.1.0...v2.2.0) (2025-06-19)
+## [v3.1.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.2.0...v3.1.0) - 2025-06-24
 
+### Changes
+
+### 🚀 Features
+
+- feat: add changelog ci @fferron-gocloud (#13)
+
+### 🐛 Bug Fixes
+
+- fix: update readme @fferron-gocloud (#12)
+
+### Contributors
+
+@fferron-gocloud and fferron.gocloud
+
+## [2.2.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.1.0...v2.2.0) (2025-06-19)
 
 ### Features
 
 * add test-feat file ([#8](https://github.com/gocloudLa/terraform-aws-first-module/issues/8)) ([45a26d6](https://github.com/gocloudLa/terraform-aws-first-module/commit/45a26d6ee4da21418257e3c8a3b20542b882add5))
 * release-please-test-2-commits ([#9](https://github.com/gocloudLa/terraform-aws-first-module/issues/9)) ([5485036](https://github.com/gocloudLa/terraform-aws-first-module/commit/54850366d4b0fb8cb5241902df61ac81286c1377))
 
-
 ### Bug Fixes
 
 * add test-fix file ([#6](https://github.com/gocloudLa/terraform-aws-first-module/issues/6)) ([bc7a39c](https://github.com/gocloudLa/terraform-aws-first-module/commit/bc7a39c7ffde272091f8400e336e8dd1fe56f78f))
 
 ## [2.1.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.0.0...v2.1.0) (2025-06-19)
-
 
 ### Features
 

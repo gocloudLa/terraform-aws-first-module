@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v10.10.10](https://github.com/gocloudLa/terraform-aws-first-module/compare/v5.5.5...v10.10.10) - 2025-06-26
+
+### Changes
+
+- feat(cicd): change template @fferron-gocloud ([#3](https://github.com//pull/3))
+
+### 🚀 Features
+
+- feat(cicd): change labels @fferron-gocloud ([#4](https://github.com//pull/4))
+- feat(cicd): add release-drafter @fferron-gocloud ([#1](https://github.com//pull/1))
+
+### 🐛 Bug Fixes
+
+- fix(cicd): add comment release drafter @fferron-gocloud ([#2](https://github.com//pull/2))
+
+### Contributors
+
+@fferron-gocloud and fferron.gocloud
+
 ## [v5.5.5](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.2.0...v5.5.5) - 2025-06-26
 
 ### Changes

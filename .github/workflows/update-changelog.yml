@@ -34,11 +34,19 @@ jobs:
           echo "$HTML_BODY" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Convert HTML to Markdown
+        id: convert_html
+        run: |
+          MARKDOWN=$(echo "${{ steps.get_html_body.outputs.html_body }}" | pandoc -f html -t markdown)
+          echo "markdown<<EOF" >> $GITHUB_OUTPUT
+          echo "$MARKDOWN" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           latest-version: ${{ github.event.release.tag_name }}
-          release-notes: ${{ steps.get_html_body.outputs.html_body }}
+          release-notes: ${{ steps.convert_html.outputs.markdown }}
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v5

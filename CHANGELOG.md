@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v100.100.100](https://github.com/gocloudLa/terraform-aws-first-module/compare/v40.40.40...v100.100.100) - 2025-06-26
+
+https://github.com//pull/https://github.com//pull/ Changes
+
+https://github.com//pull/https://github.com//pull/ 🚀 Features
+
+- feat: add changelog ci @fferron-gocloud (https://github.com//pull/13)
+
+https://github.com//pull/https://github.com//pull/ 🐛 Bug Fixes
+
+- fix: update readme @fferron-gocloud (https://github.com//pull/12)
+
+https://github.com//pull/https://github.com//pull/ Contributors
+
+@fferron-gocloud
+
 ## [v40.40.40](https://github.com/gocloudLa/terraform-aws-first-module/compare/v50.50.50...v40.40.40) - 2025-06-26
 
 ### Changes
@@ -73,7 +89,6 @@ octo-click="hovercard-link-click" octo-dimensions="link_type:self"}
 ## [v3.1.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.2.0...v3.1.0) - 2025-06-24
 ### Changes
 ### 🚀 Features
-
 - feat: add changelog ci @fferron-gocloud (#13)
 
 ### 🐛 Bug Fixes

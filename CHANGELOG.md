@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v10.10.10](https://github.com/gocloudLa/terraform-aws-first-module/compare/v3.1.0...v10.10.10) - 2025-06-26
+
+<h2>Changes</h2>
+<h2>🚀 Features</h2>
+<ul>
+<li>feat: add changelog ci <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/fferron-gocloud/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/fferron-gocloud">@fferron-gocloud</a> (<a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="3172826757" data-permission-text="Title is private" data-url="https://github.com/gocloudLa/terraform-aws-first-module/issues/13" data-hovercard-type="pull_request" data-hovercard-url="/gocloudLa/terraform-aws-first-module/pull/13/hovercard" href="https://github.com/gocloudLa/terraform-aws-first-module/pull/13">#13</a>)</li>
+</ul>
+<h2>🐛 Bug Fixes</h2>
+<ul>
+<li>fix: update readme <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/fferron-gocloud/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/fferron-gocloud">@fferron-gocloud</a> (<a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="3172297235" data-permission-text="Title is private" data-url="https://github.com/gocloudLa/terraform-aws-first-module/issues/12" data-hovercard-type="pull_request" data-hovercard-url="/gocloudLa/terraform-aws-first-module/pull/12/hovercard" href="https://github.com/gocloudLa/terraform-aws-first-module/pull/12">#12</a>)</li>
+</ul>
+<h2>Contributors</h2>
+<p><a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/fferron-gocloud/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/fferron-gocloud">@fferron-gocloud</a></p>
 ## [v3.1.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.2.0...v3.1.0) - 2025-06-24
 
 ### Changes

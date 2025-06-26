@@ -1,0 +1,14 @@
+name: "Echo Release Body"
+
+on:
+  release:
+    types: [edited]
+
+jobs:
+  echo-release-body:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo release body
+        run: |
+          echo "Release body (edit event):"
+          echo "${{ github.event.release.body }}" 

@@ -42,8 +42,8 @@ jobs:
           # Process each commit to find PR references
           FORMATTED_BODY="${{ github.event.release.body }}"
           
-          # Replace #number with links to PRs
-          FORMATTED_BODY=$(echo "$FORMATTED_BODY" | sed 's/#\([0-9]*\)/https:\/\/github.com\/$REPO\/pull\/\1/g')
+          # Replace #number with links to PRs (only when followed by a number)
+          FORMATTED_BODY=$(echo "$FORMATTED_BODY" | sed 's/#\([0-9]\+\)/https:\/\/github.com\/$REPO\/pull\/\1/g')
           
           echo "formatted_body<<EOF" >> $GITHUB_OUTPUT
           echo "$FORMATTED_BODY" >> $GITHUB_OUTPUT

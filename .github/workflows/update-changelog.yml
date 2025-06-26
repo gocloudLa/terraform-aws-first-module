@@ -20,27 +20,42 @@ jobs:
         with:
           ref: ${{ github.event.release.target_commitish }}
 
-      - name: Get release body as HTML
-        id: get_html_body
+      - name: Get release with PR links
+        id: get_release_with_links
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_ID: ${{ github.event.release.id }}
           REPO: ${{ github.repository }}
         run: |
-          HTML_BODY=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.v3.html+json" \
-            "https://api.github.com/repos/$REPO/releases/$RELEASE_ID" | jq -r '.body_html')
-          echo "html_body<<EOF" >> $GITHUB_OUTPUT
-          echo "$HTML_BODY" >> $GITHUB_OUTPUT
+          # Get release details
+          RELEASE_DATA=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/releases/$RELEASE_ID")
+          
+          # Get commits between tags
+          PREVIOUS_TAG=$(echo "$RELEASE_DATA" | jq -r '.target_commitish')
+          CURRENT_TAG="${{ github.event.release.tag_name }}"
+          
+          # Get commits in this release
+          COMMITS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/compare/$PREVIOUS_TAG...$CURRENT_TAG" | jq -r '.commits[] | .sha')
+          
+          # Process each commit to find PR references
+          FORMATTED_BODY="${{ github.event.release.body }}"
+          
+          # Replace #number with links to PRs
+          FORMATTED_BODY=$(echo "$FORMATTED_BODY" | sed 's/#\([0-9]*\)/https:\/\/github.com\/$REPO\/pull\/\1/g')
+          
+          echo "formatted_body<<EOF" >> $GITHUB_OUTPUT
+          echo "$FORMATTED_BODY" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Echo release body
         id: echo_body
         run: |
-          echo "Release body (original):"
-          echo "${{ github.event.release.body }}"
+          echo "Release body with PR links:"
+          echo "${{ steps.get_release_with_links.outputs.formatted_body }}"
           echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "${{ github.event.release.body }}" >> $GITHUB_OUTPUT
+          echo "${{ steps.get_release_with_links.outputs.formatted_body }}" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Update Changelog

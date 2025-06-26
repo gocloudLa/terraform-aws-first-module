@@ -2,7 +2,7 @@ name: "Echo Release Body"
 
 on:
   release:
-    types: [edited]
+    types: [released]
 
 jobs:
   echo-release-body:

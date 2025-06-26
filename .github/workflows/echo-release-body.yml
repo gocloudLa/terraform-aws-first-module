@@ -4,7 +4,25 @@ on:
   release:
     types: [released]
 
+permissions:
+  contents: read
+
 jobs:
+  echo-release-body-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get release body as HTML
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ github.event.release.id }}
+          REPO: ${{ github.repository }}
+        run: |
+          HTML_BODY=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3.html+json" \
+            "https://api.github.com/repos/$REPO/releases/$RELEASE_ID" | jq -r '.body_html')
+          echo "Release body (HTML):"
+          echo "$HTML_BODY" 
+
   echo-release-body:
     runs-on: ubuntu-latest
     steps:

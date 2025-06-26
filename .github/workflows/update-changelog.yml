@@ -20,6 +20,11 @@ jobs:
         with:
           ref: ${{ github.event.release.target_commitish }}
 
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
       - name: Get release body as HTML
         id: get_html_body
         env:

@@ -20,15 +20,29 @@ jobs:
         with:
           ref: ${{ github.event.release.target_commitish }}
 
+      - name: Get release body as HTML
+        id: get_html_body
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ github.event.release.id }}
+          REPO: ${{ github.repository }}
+        run: |
+          HTML_BODY=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3.html+json" \
+            "https://api.github.com/repos/$REPO/releases/$RELEASE_ID" | jq -r '.body_html')
+          echo "html_body<<EOF" >> $GITHUB_OUTPUT
+          echo "$HTML_BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           latest-version: ${{ github.event.release.tag_name }}
-          release-notes: ${{ github.event.release.body }}
+          release-notes: ${{ steps.get_html_body.outputs.html_body }}
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: ${{ github.event.release.target_commitish }}
-          commit_message: "chore(${{ github.event.release.target_commitish }}): release ${github.event.release.tag_name}"
+          commit_message: "chore(${{ github.event.release.target_commitish }}): release ${{ github.event.release.tag_name }}"
           file_pattern: CHANGELOG.md

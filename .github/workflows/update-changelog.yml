@@ -43,8 +43,9 @@ jobs:
           FORMATTED_BODY="${{ github.event.release.body }}"
           
           # Replace (#number) with links to PRs while keeping the (#number) format
-          FORMATTED_BODY=$(echo "$FORMATTED_BODY" | sed 's/(#\([0-9]\+\))/([#\1](https:\/\/github.com\/$REPO\/pull\/\1))/g')
+          FORMATTED_BODY=$(echo "$FORMATTED_BODY" | sed "s/(#\([0-9]\+\))/([#\1](https:\/\/github.com\/$REPO\/pull\/\1))/g")
           
+          echo "$REPO"
           echo "formatted_body<<EOF" >> $GITHUB_OUTPUT
           echo "$FORMATTED_BODY" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT

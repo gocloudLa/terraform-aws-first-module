@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v50.50.50](https://github.com/gocloudLa/terraform-aws-first-module/compare/v10.10.10...v50.50.50) - 2025-06-26
+
+### Changes
+
+### 🚀 Features
+
+- feat: add changelog ci
+    [@fferron-gocloud](https://github.com/fferron-gocloud){.user-mention
+    notranslate="" hovercard-type="user"
+    hovercard-url="/users/fferron-gocloud/hovercard"
+    octo-click="hovercard-link-click" octo-dimensions="link_type:self"}
+    ([#13](https://github.com/gocloudLa/terraform-aws-first-module/pull/13){.issue-link
+    js-issue-link="" error-text="Failed" to="" load=""
+    data-id="3172826757" permission-text="Title" is="" private=""
+    url="https://github.com/gocloudLa/terraform-aws-first-module/issues/13"
+    hovercard-type="pull_request"
+    hovercard-url="/gocloudLa/terraform-aws-first-module/pull/13/hovercard"})
+
+### 🐛 Bug Fixes
+
+- fix: update readme
+    [@fferron-gocloud](https://github.com/fferron-gocloud){.user-mention
+    notranslate="" hovercard-type="user"
+    hovercard-url="/users/fferron-gocloud/hovercard"
+    octo-click="hovercard-link-click" octo-dimensions="link_type:self"}
+    ([#12](https://github.com/gocloudLa/terraform-aws-first-module/pull/12){.issue-link
+    js-issue-link="" error-text="Failed" to="" load=""
+    data-id="3172297235" permission-text="Title" is="" private=""
+    url="https://github.com/gocloudLa/terraform-aws-first-module/issues/12"
+    hovercard-type="pull_request"
+    hovercard-url="/gocloudLa/terraform-aws-first-module/pull/12/hovercard"})
+
+### Contributors
+
+[@fferron-gocloud](https://github.com/fferron-gocloud){.user-mention
+notranslate="" hovercard-type="user"
+hovercard-url="/users/fferron-gocloud/hovercard"
+octo-click="hovercard-link-click" octo-dimensions="link_type:self"}
+
 ## [v10.10.10](https://github.com/gocloudLa/terraform-aws-first-module/compare/v3.1.0...v10.10.10) - 2025-06-26
 
 <h2>Changes</h2>
@@ -16,7 +55,6 @@ All notable changes to this project will be documented in this file.
 <h2>Contributors</h2>
 <p><a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/fferron-gocloud/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/fferron-gocloud">@fferron-gocloud</a></p>
 ## [v3.1.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v2.2.0...v3.1.0) - 2025-06-24
-
 ### Changes
 
 ### 🚀 Features

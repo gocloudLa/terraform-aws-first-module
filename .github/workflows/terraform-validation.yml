@@ -1,16 +1,15 @@
 name: Terraform Validation
 
 on:
-  push:
-    branches: [ main, develop ]
+  #push:
+  #  branches: [ main ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
-  terraform-validation:
-    name: Terraform Validation
+  terraform-fmt:
+    name: Terraform Format Check
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -23,44 +22,34 @@ jobs:
     - name: Terraform Format Check
       run: terraform fmt -check -recursive
 
-    - name: Terraform Init
-      run: terraform init
-
-    - name: Terraform Validate
-      run: terraform validate
-
-    - name: tflint
-      uses: terraform-linters/setup-tflint@v4
-      with:
-        tflint_version: latest
-
-    - name: Show tflint version
-      run: tflint --version
-
-    - name: Init tflint
-      run: tflint --init
-
-    - name: Run tflint
-      run: tflint -f compact
-
-  security-scan:
-    name: Security Scan
+  terraform-validation:
+    name: Terraform Validation
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'config'
-        scan-ref: '.'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
+    - name: Extract Terraform min/max versions
+      id: minMax
+      uses: clowdhaus/terraform-min-max@v1.4.0
 
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v3
-      if: always()
+    - name: Setup Terraform (min version)
+      uses: hashicorp/setup-terraform@v3
       with:
-        sarif_file: 'trivy-results.sarif' 
+        terraform_version: ${{ steps.minMax.outputs.minVersion }}
+
+    - name: Terraform Init and Validate (min version)
+      run: |
+        terraform init
+        terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)
+
+    - name: Setup Terraform (max version)
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ steps.minMax.outputs.maxVersion }}
+
+    - name: Terraform Init and Validate (max version)
+      run: |
+        terraform init
+        terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)
+

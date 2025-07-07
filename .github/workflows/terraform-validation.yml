@@ -43,7 +43,8 @@ jobs:
       if: false
       run: |
         terraform init
-        terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)
+        #terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)
+        terraform validate
 
     - name: Setup Terraform (max version)
       uses: hashicorp/setup-terraform@v3
@@ -53,5 +54,6 @@ jobs:
     - name: Terraform Init and Validate (max version)
       run: |
         terraform init
-        terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)
+        #terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)
+        terraform validate
 

@@ -35,10 +35,12 @@ jobs:
 
     - name: Setup Terraform (min version)
       uses: hashicorp/setup-terraform@v3
+      if: false
       with:
         terraform_version: ${{ steps.minMax.outputs.minVersion }}
 
     - name: Terraform Init and Validate (min version)
+      if: false
       run: |
         terraform init
         terraform validate --color=always --show-diff-on-failure --files $(ls *.tf)

@@ -1,8 +1,8 @@
 name: Terraform Validation
 
 on:
-  #push:
-  #  branches: [ main ]
+  push:
+    branches: [ github-refactor-best-practices ] #[ main, github-refactor-best-practices ]
   pull_request:
     branches: [ main ]
 

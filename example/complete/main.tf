@@ -1,14 +1,11 @@
 module "wrapper_acm" {
   source = "../../"
 
-  providers = {
-    aws.use1 = aws.use1
-  }
-
   metadata = local.metadata
 
   acm_parameters = {
     "${local.zone_public}" = {
+      #region = "us-east-1"
       subject_alternative_names = [
         "*.${local.zone_public}"
       ]

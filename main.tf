@@ -5,7 +5,7 @@ module "acm" {
   for_each = var.acm_parameters
 
   create_certificate                          = true
-  region                                      = try(each.value.region, var.acm_defaults.region, local.metadata.aws_region )
+  region                                      = try(each.value.region, var.acm_defaults.region, local.metadata.aws_region)
   create_route53_records_only                 = try(each.value.create_route53_records_only, var.acm_defaults.create_route53_records_only, false)
   validate_certificate                        = try(each.value.validate_certificate, var.acm_defaults.validate_certificate, true)
   validation_allow_overwrite_records          = try(each.value.validation_allow_overwrite_records, var.acm_defaults.validation_allow_overwrite_records, true)

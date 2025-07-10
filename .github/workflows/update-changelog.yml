@@ -1,0 +1,76 @@
+name: "Update Changelog"
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the 
+      # updated CHANGELOG back to the repository.
+      # https://github.blog/changelog/2023-02-02-github-actions-updating-the-default-github_token-permissions-to-read-only/
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+
+      - name: Get release with PR links
+        id: get_release_with_links
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ github.event.release.id }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Get release details
+          RELEASE_DATA=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/releases/$RELEASE_ID")
+          
+          # Get commits between tags
+          PREVIOUS_TAG=$(echo "$RELEASE_DATA" | jq -r '.target_commitish')
+          CURRENT_TAG="${{ github.event.release.tag_name }}"
+          
+          # Get commits in this release
+          COMMITS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/compare/$PREVIOUS_TAG...$CURRENT_TAG" | jq -r '.commits[] | .sha')
+          
+          # Process each commit to find PR references
+          FORMATTED_BODY="${{ github.event.release.body }}"
+          
+          # Escape special characters in REPO for sed
+          ESCAPED_REPO=$(echo "$REPO" | sed 's/[\/&]/\\&/g')
+          
+          # Replace (#number) with links to PRs while keeping the (#number) format
+          FORMATTED_BODY=$(echo "$FORMATTED_BODY" | sed "s/(#\([0-9]\+\))/([#\1](https:\/\/github.com\/$ESCAPED_REPO\/pull\/\1))/g")
+          
+          echo "$REPO"
+          echo "formatted_body<<EOF" >> $GITHUB_OUTPUT
+          echo "$FORMATTED_BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Echo release body
+        id: echo_body
+        run: |
+          echo "Release body with PR links:"
+          echo "${{ steps.get_release_with_links.outputs.formatted_body }}"
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "${{ steps.get_release_with_links.outputs.formatted_body }}" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update Changelog
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ steps.echo_body.outputs.body }}
+
+      - name: Commit updated CHANGELOG
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: ${{ github.event.release.target_commitish }}
+          commit_message: "chore(${{ github.event.release.target_commitish }}): release ${{ github.event.release.tag_name }}"
+          file_pattern: CHANGELOG.md

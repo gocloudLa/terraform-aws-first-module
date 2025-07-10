@@ -1,0 +1,48 @@
+name-template: 'v$RESOLVED_VERSION 🌈'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feat'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+  - title: '🔥 Breaking Changes'
+    labels:
+      - 'feat!'
+      - 'fix!'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&' #You can add # and @ to disable mentions, and add ` to disable code blocks.
+version-resolver:
+  major:
+    labels:
+      - 'feat!'
+      - 'fix!'
+  minor:
+    labels:
+      - 'feat'
+  patch:
+    labels:
+      - 'fix'
+  default: patch
+autolabeler:
+  - label: 'fix'
+    branch:
+      - '/fix\/.+/'
+  - label: 'feat'
+    branch:
+      - '/feat\/.+/'
+  - label: 'fix!'
+    branch:
+      - '/fix!\/.+/'
+  - label: 'feat!'
+    branch:
+      - '/feat!\/.+/'
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ## Contributors
+
+  $CONTRIBUTORS

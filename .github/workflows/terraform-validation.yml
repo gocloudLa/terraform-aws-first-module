@@ -11,7 +11,7 @@ on:
     branches: [ main ]
 
 jobs:
-  terraform-validation:
+  terraform:
     uses: gocloudLa/.github/.github/workflows/terraform-module.yml@feat/add-workflow-terraform
     with:
       terraform_fmt_version: 'latest'

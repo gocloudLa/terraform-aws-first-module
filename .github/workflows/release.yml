@@ -1,0 +1,11 @@
+name: "Release"
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  changelog:
+    uses: gocloudLa/.github/.github/workflows/update-changelog.yml@main
+    with:
+      releaseEvent: ${{ toJSON(github.event.release) }}

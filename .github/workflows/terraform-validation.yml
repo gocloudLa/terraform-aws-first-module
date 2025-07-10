@@ -1,18 +1,17 @@
 name: Terraform Validation
 
 on:
-  push:
-    branches: [ github-refactor-best-practices ] #[ main, github-refactor-best-practices ]
   pull_request:
     types:
-      - opened # necesario ?
-      - reopened # necesario ?
+      - opened
+      - reopened
       - synchronize
-    branches: [ main ]
+    branches: 
+      - main
 
 jobs:
   terraform:
-    uses: gocloudLa/.github/.github/workflows/terraform-module.yml@feat/add-workflow-terraform
+    uses: gocloudLa/.github/.github/workflows/terraform-module.yml@main
     with:
       terraform_fmt_version: 'latest'
       working_directory: '.'

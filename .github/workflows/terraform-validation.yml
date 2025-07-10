@@ -12,7 +12,7 @@ on:
 
 jobs:
   terraform-validation:
-    uses: gocloud/.github/workflows/terraform-module.yml@feat/add-workflow-terraform
+    uses: gocloudLa/.github/workflows/terraform-module.yml@feat/add-workflow-terraform
     with:
       terraform_fmt_version: 'latest'
       working_directory: '.'

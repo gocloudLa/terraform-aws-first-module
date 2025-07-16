@@ -7,5 +7,6 @@ on:
 jobs:
   changelog:
     uses: gocloudLa/.github/.github/workflows/update-changelog.yml@main
+    secrets: inherit
     with:
       releaseEvent: ${{ toJSON(github.event.release) }}

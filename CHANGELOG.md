@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [71.72.0](https://github.com/gocloudLa/terraform-aws-first-module/compare/v71.71.71...v71.72.0) (2025-07-21)
+
+
+### Features
+
+* add release-please function ([0140fd3](https://github.com/gocloudLa/terraform-aws-first-module/commit/0140fd37918d9ac7486f2205c84b653c82647cbe))
+
 ## [v71.71.71](https://github.com/gocloudLa/terraform-aws-first-module/compare/v70.70.70...v71.71.71) - 2025-07-16
 
 ### Changes
